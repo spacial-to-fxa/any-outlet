@@ -1,0 +1,47 @@
+<%- include('../layout', { body: `
+    <h1>Admin Dashboard</h1>
+    
+    <div style="display:flex; gap:20px; flex-wrap:wrap;">
+        <div style="flex:1; min-width:300px; border:1px solid #ddd; padding:20px;">
+            <h3>Add Product</h3>
+            <form action="/admin/product" method="POST" enctype="multipart/form-data">
+                <input type="text" name="name" placeholder="Name" required>
+                <input type="text" name="description" placeholder="Desc">
+                <input type="number" name="realPrice" placeholder="Real Price">
+                <input type="number" name="salePrice" placeholder="Sale Price">
+                <input type="number" name="stock" placeholder="Stock">
+                <input type="file" name="image" required>
+                <button class="btn">Add</button>
+            </form>
+        </div>
+
+        <div style="flex:1; min-width:300px; border:1px solid #ddd; padding:20px;">
+            <h3>Settings</h3>
+            <form action="/admin/settings" method="POST">
+                <input type="text" name="shopName" value="${config.shopName}">
+                <input type="text" name="address" placeholder="Address" value="${config.address||''}">
+                <input type="text" name="phone" placeholder="Phone" value="${config.phone||''}">
+                <input type="text" name="lineId" placeholder="Line ID" value="${config.lineId||''}">
+                <button class="btn">Update</button>
+            </form>
+        </div>
+    </div>
+
+    <h3>Users</h3>
+    <table border="1" cellspacing="0" cellpadding="5" width="100%">
+        <% users.forEach(u => { %>
+            <tr>
+                <td>${u.name}</td>
+                <td>${u.email}</td>
+                <td>${u.role}</td>
+                <td>
+                    <% if(u.role !== 'admin') { %>
+                        <form action="/admin/promote/${u._id}" method="POST">
+                            <button>Promote</button>
+                        </form>
+                    <% } %>
+                </td>
+            </tr>
+        <% }) %>
+    </table>
+` }) %>

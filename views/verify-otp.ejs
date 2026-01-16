@@ -1,0 +1,8 @@
+<%- include('layout', { body: `
+    <h2>Verify Email</h2>
+    <p>Check your email for the OTP code.</p>
+    <form action="/verify-otp" method="POST">
+        <input type="text" name="otp" placeholder="Enter 6-digit OTP" required>
+        <button class="btn">Verify</button>
+    </form>
+` }) %>

@@ -1,0 +1,9 @@
+<%- include('layout', { body: `
+    <div style="text-align:center;">
+        <h2>Scan to Pay</h2>
+        <img src="${qrImage}" style="width:250px;">
+        <p>Price: ฿${product.salePrice}</p>
+        <p>Shipping to: ${address}</p>
+        <a href="/" class="btn">Done</a>
+    </div>
+` }) %>

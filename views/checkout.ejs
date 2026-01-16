@@ -1,0 +1,26 @@
+<%- include('layout', { body: `
+    <h2>Checkout: ${product.name}</h2>
+    <h3>Total: <span style="color:red">฿${product.salePrice}</span></h3>
+    <form action="/process-checkout" method="POST" id="form">
+        <input type="hidden" name="productId" value="${product._id}">
+        <input type="text" value="${user.name}" readonly>
+        <textarea name="address" placeholder="Shipping Address" required></textarea>
+        <input type="text" name="phone" placeholder="Phone Number (for PromptPay)" required>
+        
+        <div style="margin: 20px 0; border:1px solid #ccc; padding:10px;">
+            <p>⚠ Do you accept the condition of these clearance goods?</p>
+            <label><input type="radio" name="consent" value="yes" required> Yes</label>
+            <label><input type="radio" name="consent" value="no"> No</label>
+        </div>
+        <button class="btn">Pay Now</button>
+    </form>
+    <script>
+        document.getElementById('form').onsubmit = (e) => {
+            if(document.querySelector('input[name="consent"]:checked').value === 'no') {
+                e.preventDefault();
+                alert('Ok Sure');
+                window.location = '/';
+            }
+        }
+    </script>
+` }) %>

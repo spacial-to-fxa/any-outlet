@@ -1,0 +1,10 @@
+<%- include('layout', { body: `
+    <h2>Sign Up</h2>
+    <form action="/signup" method="POST">
+        <input type="text" name="name" placeholder="Full Name" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <input type="password" name="confirmPassword" placeholder="Confirm Password" required>
+        <button class="btn">Sign Up</button>
+    </form>
+` }) %>
